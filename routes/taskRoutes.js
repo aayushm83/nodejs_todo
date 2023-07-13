@@ -2,8 +2,12 @@ import express from "express";
 import { deleteTask, newTask, showAllTask, updateTask } from "../controllers/taskController.js";
 import { isAuthenticated } from "../middleware/auth.js";
 import mongoose from "mongoose";
+import dotenv from "dotenv"
+dotenv.config({
+    path:'./data/config.env'
+})
 mongoose
-  .connect("mongodb://127.0.0.1:27017", {
+  .connect(process.env.MONGO_URI, {
     dbName: "AuthenticationApp",
   })
   .then(() => {
